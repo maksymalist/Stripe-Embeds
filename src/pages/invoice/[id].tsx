@@ -7,6 +7,9 @@ type Props = {
   data: {
     invoice: {
       amount_paid: number;
+      customer: string;
+      number: string;
+      amount_due: number;
     };
   };
 };
@@ -14,6 +17,8 @@ type Props = {
 type WidgetProps = {
   amount_paid: number;
   customer: string;
+  number: string;
+  amount_due: number;
 };
 
 const PaymentWidget = (props: WidgetProps) => {
@@ -33,8 +38,8 @@ const PaymentWidget = (props: WidgetProps) => {
       </div>
       <div className="my-4 flex w-full flex-row justify-start">
         <div className="flex flex-col">
-          <span>Invoice #1234</span>
-          <span className="text-4xl font-bold">$60,00</span>
+          <span>Invoice {props.number}</span>
+          <span className="text-4xl font-bold">${props.amount_due / 100}</span>
         </div>
       </div>
       <div className="mb-4 flex w-full flex-row justify-center">
@@ -179,7 +184,9 @@ export default function Home(props: Props) {
       <main className="p-4">
         <PaymentWidget
           amount_paid={props.data.invoice.amount_paid}
-          customer="Nancy Cueva"
+          customer={props.data.invoice.customer}
+          number={props.data.invoice.number}
+          amount_due={props.data.invoice.amount_due}
         />
       </main>
     </>
@@ -201,6 +208,9 @@ export const getServerSideProps = async (
   const data = {
     invoice: {
       amount_paid: json.invoice.amount_paid,
+      customer: json.invoice.customer_name,
+      number: json.invoice.receipt_number,
+      amount_due: json.invoice.amount_due,
     },
   };
 
