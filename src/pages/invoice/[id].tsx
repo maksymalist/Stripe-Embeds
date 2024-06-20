@@ -47,12 +47,10 @@ export const getServerSideProps = async (
     `http://localhost:3000/api/invoice/${id as string}`,
   );
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const json = await invoice.json();
+  const json = (await invoice.json()) as { invoice: Stripe.Invoice };
 
   const data = {
     invoice: {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       amount_paid: json.invoice.amount_paid,
     },
   };
