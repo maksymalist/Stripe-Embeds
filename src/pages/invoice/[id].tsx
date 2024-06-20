@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
-import { getApiUrl } from "../../utils/apiUrl";
-import { GetServerSidePropsContext } from "next";
+import type { GetServerSidePropsContext } from "next";
+import type { Stripe } from "stripe";
 
 type Props = {
   data: {
@@ -43,15 +43,17 @@ export const getServerSideProps = async (
   const { query } = context;
   const { id } = query;
 
-  const invoice = await fetch(`http://localhost:3000/api/invoice/${id}`);
+  const invoice = await fetch(
+    `http://localhost:3000/api/invoice/${id as string}`,
+  );
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const json = await invoice.json();
 
   const data = {
     invoice: {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      amount_paid: json?.invoice?.amount_paid as number,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      amount_paid: json.invoice.amount_paid,
     },
   };
 

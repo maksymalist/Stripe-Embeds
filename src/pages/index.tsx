@@ -39,11 +39,6 @@ export default function Home() {
                 Learn more about Create T3 App, the libraries it uses, and how
                 to deploy it.
               </div>
-              <a href="https://connect.stripe.com/d/setup/e/_QKDzVkdjfkCwAyB6CgpHZg6S4B/YWNjdF8xUFRaV3lCSUxhZzJVMTR1/d6221c22453432cba">
-                <button className="rounded-md bg-indigo-600 p-4 font-bold">
-                  Connect with Stripe
-                </button>
-              </a>
             </Link>
           </div>
         </div>

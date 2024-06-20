@@ -1,5 +1,5 @@
 import { getStripe } from "../../../utils/stripe";
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const GET = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query;
