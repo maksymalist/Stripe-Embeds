@@ -18,6 +18,11 @@ const config = {
     defaultLocale: "en",
   },
   transpilePackages: ["geist"],
+  env: {
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+    DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
+    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+  },
 };
 
 export default config;
