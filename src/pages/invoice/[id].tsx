@@ -4,7 +4,11 @@ import { getApiUrl } from "../../utils/apiUrl";
 import { GetServerSidePropsContext } from "next";
 
 type Props = {
-  data: any;
+  data: {
+    invoice: {
+      amount_paid: number;
+    };
+  };
 };
 
 export default function Home(props: Props) {
@@ -41,7 +45,15 @@ export const getServerSideProps = async (
 
   const invoice = await fetch(`http://localhost:3000/api/invoice/${id}`);
 
-  const data = await invoice.json();
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const json = await invoice.json();
+
+  const data = {
+    invoice: {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      amount_paid: json?.invoice?.amount_paid as number,
+    },
+  };
 
   console.log(data);
   return {
