@@ -1,6 +1,6 @@
 import Head from "next/head";
-import Link from "next/link";
 import React from "react";
+import { getApiUrl } from "../../utils/apiUrl";
 
 type Props = {
   data: any;
@@ -36,7 +36,7 @@ export const getServerSideProps = async (context) => {
   const { query } = context;
   const { id } = query;
 
-  const invoice = await fetch(`http://localhost:3000/api/invoice/${id}`);
+  const invoice = await fetch(getApiUrl(`/api/invoice/${id}`));
 
   const data = await invoice.json();
 
