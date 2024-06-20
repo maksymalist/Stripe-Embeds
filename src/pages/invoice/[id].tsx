@@ -1,6 +1,7 @@
 import Head from "next/head";
 import React from "react";
 import { getApiUrl } from "../../utils/apiUrl";
+import { GetServerSidePropsContext } from "next";
 
 type Props = {
   data: any;
@@ -32,7 +33,9 @@ export default function Home(props: Props) {
   );
 }
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext,
+) => {
   const { query } = context;
   const { id } = query;
 
