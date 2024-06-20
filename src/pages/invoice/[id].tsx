@@ -36,7 +36,7 @@ export const getServerSideProps = async (context) => {
   const { query } = context;
   const { id } = query;
 
-  const invoice = await fetch(getApiUrl(`/api/invoice/${id}`));
+  const invoice = await fetch(`http://localhost:3000/api/invoice/${id}`);
 
   const data = await invoice.json();
 
