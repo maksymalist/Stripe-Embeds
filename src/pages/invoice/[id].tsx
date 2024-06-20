@@ -44,7 +44,7 @@ export const getServerSideProps = async (
   const { id } = query;
 
   const invoice = await fetch(
-    `http://localhost:3000/api/invoice/${id as string}`,
+    `https://stripe-embeds.vercel.app/api/invoice/${id as string}`,
   );
 
   const json = (await invoice.json()) as { invoice: Stripe.Invoice };
